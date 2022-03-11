@@ -74,7 +74,7 @@ app$callback(
         data <- gapminder
 
         if (region_value != "All") {
-            data <- data |>
+            data <- data %>%
                 filter(region == region_value)
         }
 
@@ -86,7 +86,7 @@ app$callback(
             text = ~country,
             color = data[[stat]],
             colors = "Reds"
-        ) |>
+        ) %>%
             layout(title = paste0(labels[[stat]], " for ", region_value))
 
         ggplotly(map_plot)
