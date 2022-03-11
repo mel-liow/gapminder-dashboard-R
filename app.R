@@ -12,7 +12,7 @@ gapminder <- readr::read_csv("data/processed/gapminder_processed.csv")
 
 
 app$layout(
-    htmlDiv(
+    dbcContainer(
         list(
             htmlH1("Gapminder Dashboard"),
             dccDropdown(
@@ -25,7 +25,8 @@ app$layout(
                     list(label = "Europe", value = "Europe"),
                     list(label = "Oceania", value = "Oceania")
                 ),
-                value = "All"
+                value = "All",
+                style = list("width" = "350px", "margin-bottom" = "10px")
             ),
             dccDropdown(
                 id = "stat",
@@ -39,10 +40,16 @@ app$layout(
                     list(label = "Years in school (Men)", value = "years_in_school_men"),
                     list(label = "Years in school (Women)", value = "years_in_school_women")
                 ),
-                value = "life_expectancy"
+                value = "life_expectancy",
+                style = list("width" = "350px")
             ),
-            dccGraph(id = "map")
-        )
+            dbcContainer(
+                list(
+                    dccGraph(id = "map")
+                )
+            )
+        ),
+        style = list("padding" = "20px")
     )
 )
 
