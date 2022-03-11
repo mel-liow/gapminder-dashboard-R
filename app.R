@@ -16,7 +16,6 @@ labels <- list(
     "children_per_woman" = "Children per Woman"
 )
 
-
 app$layout(
     dbcContainer(
         list(
@@ -76,7 +75,6 @@ app$callback(
                 dplyr::filter(region == region_value)
         }
 
-
         map_plot <- plot_ly(data,
             type = "choropleth",
             locations = ~code,
@@ -85,7 +83,6 @@ app$callback(
             color = data[[stat]],
             colors = "Reds"
         )
-        # layout(title = paste0(labels[[stat]], " for ", region_value))
 
         ggplotly(map_plot)
     }
