@@ -10,6 +10,14 @@ app <- Dash$new(external_stylesheets = dbcThemes$BOOTSTRAP)
 
 gapminder <- readr::read_csv("data/processed/gapminder_processed.csv")
 
+labels <- list(
+    "life_expectancy" = "Life Expectancy",
+    "education_ratio" = "Education Ratio",
+    "pop_density" = "Population Density",
+    "child_mortality" = "Child Mortality",
+    "children_per_woman" = "Children per Woman"
+)
+
 
 app$layout(
     dbcContainer(
@@ -79,7 +87,7 @@ app$callback(
             color = data[[stat]],
             colors = "Reds"
         ) |>
-            layout(title = "")
+            layout(title = paste0(labels[[stat]], " for ", region_value))
 
         ggplotly(map_plot)
     }
